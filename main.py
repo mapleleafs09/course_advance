@@ -104,14 +104,10 @@ if __name__ == '__main__':
                                 request = event.text
 
                                 if request == "да":
-                                    pprint(vkinder.bdate)
-                                    pprint(vkinder.sex)
-                                    pprint(vkinder.city_id)
+
                                     write_msg(event.user_id, f"ищу...")
                                     vkinder.search(event.user_id)
-                                    pprint(vkinder.bdate)
-                                    pprint(vkinder.sex)
-                                    pprint(vkinder.city_id)
+
 
                                     if vkinder.city_id == None:
                                         write_msg(event.user_id, f"В каком городе ты живешь?")
@@ -121,9 +117,7 @@ if __name__ == '__main__':
                                                 if event.to_me:
                                                     request = event.text
                                                     vkinder.city_id = vkinder.find_city_id(request)
-                                                    pprint(vkinder.bdate)
-                                                    pprint(vkinder.sex)
-                                                    pprint(vkinder.city_id)
+
                                                     break
                                     if vkinder.bdate == None:
                                         write_msg(event.user_id, f"Напиши год рождения")
@@ -132,15 +126,12 @@ if __name__ == '__main__':
                                                 if event.to_me:
                                                     request = event.text
                                                     vkinder.bdate = request
-                                                    pprint(vkinder.bdate)
-                                                    pprint(vkinder.sex)
-                                                    pprint(vkinder.city_id)
+
                                                     break
                                     while True:
-                                        print('ввввв')
+
                                         vkinder.chat_search()
-                                        print(vkinder._age_from)
-                                        print(vkinder._age_to)
+
                                         for event in longpoll.listen():
                                             if event.type == VkEventType.MESSAGE_NEW:
 
