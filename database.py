@@ -1,8 +1,9 @@
 import psycopg2
+import sqlalchemy
 import sqlalchemy as sq
 from sqlalchemy.sql import text
 from datetime import date
-
+from sqlalchemy.exc import OperationalError
 
 class Vkinder_Database():
 
@@ -31,6 +32,14 @@ class Vkinder_Database():
         if self.connection.execute(text('SELECT * FROM public.matches WHERE user_id = :user_id AND search_id = :search_id'), user_id= user_id, search_id= search_id).fetchall() != []:
             raise ValueError("This match already exists")
 
-vkinderdatabase = Vkinder_Database('postgresql://py47:123456@localhost:5432/course_vkinder')
+    def _select(self):
+       return self.connection.execute(text('SELECT * FROM public.matches')).fetchall()
+
+try:
+    vkinderdatabase = Vkinder_Database('postgresql://py47:123456@localhost:5432/course_vkinder')
+except sqlalchemy.exc.OperationalError:
+    print('Нет подключения к базе данных')
+    vkinderdatabase = None
+
 
 
