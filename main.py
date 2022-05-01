@@ -1,13 +1,11 @@
 from random import randrange
-from pprint import pprint
-
 import sqlalchemy
 import vk_api
 import jconfig
 from vk_api.longpoll import VkLongPoll, VkEventType
 from database import vkinderdatabase
 from datetime import date
-from config import group_token, service_token, personal_token
+from config import group_token,  personal_token
 from vk_api.vk_api import VkApi
 from vk_api.enums import VkUserPermissions
 from vk_api.vk_api import DEFAULT_USER_SCOPE
@@ -15,7 +13,6 @@ from vk_api.exceptions import ApiError
 from sqlalchemy.exc import OperationalError
 
 vk_group = VkApi(token=group_token)
-# vk_personal = VkApi(token=personal_token)
 longpoll = VkLongPoll(vk_group)
 
 
